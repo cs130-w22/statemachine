@@ -1,0 +1,29 @@
+state machine GumballMachine {
+	
+	initial start
+	
+	state NoQuarterState
+	
+	state HasQuarterState
+	
+	state SoldState
+	
+	state SoldOutState
+	
+	final end
+	
+	start -> NoQuarterState : none ["balls == 0"]
+	
+	start -> HasQuarterState : none ["balls > 0"]
+	
+	NoQuarterState -> HasQuarterState : insertQuarter
+	
+	HasQuarterState -> NoQuarterState : ejectQuarter
+	
+	HasQuarterState -> SoldState : turnCrank
+	
+	SoldState -> NoQuarterState : none ["balls > 0"]
+
+	SoldState -> SoldOutState : none ["balls == 0"]
+
+}

@@ -1,0 +1,13 @@
+@startuml
+state NoQuarterState
+state HasQuarterState
+state SoldState
+state SoldOutState
+[*] -> NoQuarterState :  [balls == 0]
+[*] -> HasQuarterState :  [balls > 0]
+NoQuarterState -> HasQuarterState : insertQuarter
+HasQuarterState -> NoQuarterState : ejectQuarter
+HasQuarterState -> SoldState : turnCrank
+SoldState -> NoQuarterState :  [balls > 0]
+SoldState -> SoldOutState :  [balls == 0]
+@enduml

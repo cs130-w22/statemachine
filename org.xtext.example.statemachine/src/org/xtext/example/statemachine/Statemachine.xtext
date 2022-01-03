@@ -1,0 +1,31 @@
+grammar org.xtext.example.statemachine.Statemachine with org.eclipse.xtext.common.Terminals
+
+generate statemachine "http://www.xtext.org/example/statemachine/Statemachine"
+
+StateMachine:
+	'state' 'machine' name=ID ('{'
+		states+=AbstractState*
+		transitions+=Transition*
+	'}')?;
+
+AbstractState:
+	State | InitialState | FinalState;
+	
+State:
+	'state' name=ID ('{'
+		activities+=Activity*
+		states+=AbstractState*
+		transitions+=Transition*
+	 '}')?;
+	
+InitialState:
+	'initial' name=ID;
+
+FinalState:
+	'final' name=ID;
+
+Transition:
+	start=[AbstractState] '->' end=[AbstractState] (':' activity=Activity)?;
+
+Activity:
+	trigger=ID ('[' condition=STRING ']')? ('/' action=STRING)?;

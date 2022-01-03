@@ -1,0 +1,22 @@
+state machine Example2 {
+	initial I
+	state S1
+	state S2 {
+		entry ["x<10"] / "x++"
+		exit / "x--"
+		initial I2
+		state S21 {
+			entry / "y++"
+			exit / "y = y+2"
+		}
+		state S22
+		final F2
+		I2 -> S21 : e1 / "z++" 
+		S21 -> F2 : e3
+		S22 -> F2 : e4
+	}
+	final F
+	I -> S1
+	S1 -> S2
+	S2 -> F
+}

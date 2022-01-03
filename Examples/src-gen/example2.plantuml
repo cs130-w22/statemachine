@@ -1,0 +1,18 @@
+@startuml
+state S1
+state S2 {
+	S2 : entry [x<10] / x++
+	S2 : exit / x--
+	state S21 {
+		S21 : entry / y++
+		S21 : exit / y = y+2
+	}
+	state S22
+	[*] -> S21 : e1 / z++
+	S21 -> [*] : e3
+	S22 -> [*] : e4
+}
+[*] -> S1
+S1 -> S2
+S2 -> [*]
+@enduml

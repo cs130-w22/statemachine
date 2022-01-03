@@ -1,0 +1,14 @@
+xtend-gen
+image-gen
+bin
+target
+build
+*.html
+.DS_Store
+.idea
+.gradle
+.launch
+.antlr-generator-*.jar
+*.iml
+*.log
+*.hprof
